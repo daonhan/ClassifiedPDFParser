@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassifiedPrintPDFReader", "ClassifiedPrintPDFReader\ClassifiedPrintPDFReader.csproj", "{87185D73-33E3-4AE0-99E2-4810582A007D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassifiedPrint.Uploader", "ClassifiedPrint.Uploader\ClassifiedPrint.Uploader.csproj", "{50BD8B0C-9D7B-468A-86D7-D4CE874AA818}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassifiedPrint.Core", "ClassifiedPrint.Core\ClassifiedPrint.Core.csproj", "{70AF0DCD-37C5-4083-8A32-D8860C0B951C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{87185D73-33E3-4AE0-99E2-4810582A007D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{87185D73-33E3-4AE0-99E2-4810582A007D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{87185D73-33E3-4AE0-99E2-4810582A007D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{87185D73-33E3-4AE0-99E2-4810582A007D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50BD8B0C-9D7B-468A-86D7-D4CE874AA818}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50BD8B0C-9D7B-468A-86D7-D4CE874AA818}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50BD8B0C-9D7B-468A-86D7-D4CE874AA818}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50BD8B0C-9D7B-468A-86D7-D4CE874AA818}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70AF0DCD-37C5-4083-8A32-D8860C0B951C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70AF0DCD-37C5-4083-8A32-D8860C0B951C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70AF0DCD-37C5-4083-8A32-D8860C0B951C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70AF0DCD-37C5-4083-8A32-D8860C0B951C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

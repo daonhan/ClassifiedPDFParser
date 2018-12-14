@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="row">
+    <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Index" id="form">
+        <div class="container">
+            <div class="row">
+                <div class="form-group">
+                    <label for="xmlFileInput" class="control-label">Chọn file chứa thông tin danh sách báo giấy(VVQ):</label>
+                    <input class="form-control" type="file" name="files" accept=".xml" onchange="validFiles(event, 'xml')" id="xmlFileInput" />
+                </div>
+                <div class="form-group">
+                    <label for="pdfFileInput" class="control-label">Chọn file pdf:</label>
+                    <input class="form-control" type="file" name="files" accept=".pdf" onchange="validFiles(event, 'pdf')" id="pdfFileInput" />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-lg" type="submit" onclick="return onSubmit(event)" id="Button" disabled="disabled">
+                        Upload
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class='bouncing-loader' style="display:none"><div></div><div></div><div></div></div>
+</div>
+<script>    
+    function validFiles(event, ex) {
+        var ext = event.target ? event.target.value.split('.').pop().toLowerCase() : event.value.split('.').pop().toLowerCase();
+        var btn = document.getElementById("Button");
+        if (ext === ex) {
+            btn.disabled = false;
+            return true;
+        }
+
+        btn.disabled = true;
+        if (ex === 'xml')
+            alert('File chứa thông tin danh sách báo giấy(VVQ) không hợp lệ');
+        else
+            alert('File pdf ra báo không hợp lệ');
+
+        event.target.value = '';
+        return false;
+    }
+    function onSubmit(event) {
+        var xmlFile = document.getElementById('xmlFileInput');
+        if (!xmlFile || validFiles(xmlFile, 'xml') === false)
+            return false;
+        var pdfFile = document.getElementById('pdfFileInput');
+        if (!pdfFile || validFiles(pdfFile, 'pdf') === false)
+            return false;
+        
+        event.target.innerHTML = "Đang xử lý";
+        //event.target.setAttribute("disabled", "disabled");
+        var loading = document.getElementsByClassName('bouncing-loader')[0];
+        if (loading) {
+            loading.setAttribute('style', '');
+            var form = document.getElementById('form');
+            if (form) {
+                form.setAttribute('style', 'display:none');
+            }
+        }
+        return true;
+    }
+</script>

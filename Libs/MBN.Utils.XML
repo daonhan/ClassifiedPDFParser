@@ -1,0 +1,1765 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MBN.Utils</name>
+    </assembly>
+    <members>
+        <member name="T:MBN.Utils.Caching.Cache">
+            <summary>
+            Cache In HttpRuntime
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Caching.Cache.Instance">
+            <summary>
+            Khởi tạo
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Caching.Cache.Item(System.String)">
+            <summary>
+            Trả về dữ liệu từ Cache
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.Cache.PurgeCache">
+            <summary>
+            Xóa dữ liệu Cache
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Caching.Cache.Remove(System.String)">
+            <summary>
+            Xóa một Item trong Cache
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:MBN.Utils.Caching.Cache.FlushAll">
+            <summary>
+            Restart App
+            </summary>
+        </member>
+        <member name="T:MBN.Utils.Caching.CacheBase">
+            <summary>
+            Cache Base
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheBase.GetValue(System.String)">
+            <summary>
+            Dữ liệu kiểu Object
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheBase.GetValue(System.String,System.Boolean)">
+            <summary>
+            Dữ liệu kiểu Object
+            </summary>
+            <param name="key"></param>
+            <param name="runtimeCache"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheBase.GetValue``1(System.String)">
+            <summary>
+            Dữ liệu kiểu T
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheBase.GetValue``1(System.String,System.Boolean)">
+            <summary>
+            Dữ liệu kiểu T
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="runtimeCache"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheBase.GetValue(System.String,System.String)">
+            <summary>
+            Dữ liệu kiểu String
+            </summary>
+            <param name="key"></param>
+            <param name="def"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheBase.GetValue(System.String,System.String,System.Boolean)">
+            <summary>
+            Dữ liệu kiểu String
+            </summary>
+            <param name="key"></param>
+            <param name="def"></param>
+            <param name="runtimeCache"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheBase.GetValue(System.String,System.Int32)">
+            <summary>
+            Dữ liệu kiểu Int
+            </summary>
+            <param name="key"></param>
+            <param name="def"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheBase.GetValue(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Dữ liệu kiểu Int
+            </summary>
+            <param name="key"></param>
+            <param name="def"></param>
+            <param name="runtimeCache"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheBase.GetValue(System.String,System.Int64)">
+            <summary>
+            Dữ liệu kiểu Long
+            </summary>
+            <param name="key"></param>
+            <param name="def"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheBase.GetValue(System.String,System.Int64,System.Boolean)">
+            <summary>
+            Dữ liệu kiểu Long
+            </summary>
+            <param name="key"></param>
+            <param name="def"></param>
+            <param name="runtimeCache"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheBase.GetValue(System.String,System.DateTime)">
+            <summary>
+            Dữ liệu kiểu DateTime
+            </summary>
+            <param name="key"></param>
+            <param name="def"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheBase.GetValue(System.String,System.DateTime,System.Boolean)">
+            <summary>
+            Dữ liệu kiểu DateTime
+            </summary>
+            <param name="key"></param>
+            <param name="def"></param>
+            <param name="runtimeCache"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MBN.Utils.Caching.CacheHashtable.CacheVersion">
+            <summary>
+            Phiên bản Cache
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheHashtable.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheHashtable.Add(System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheHashtable.Get(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheHashtable.Get``1(System.Object)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheHashtable.Remove(System.Object)">
+            <summary>
+            Xóa một nội dung theo key
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="F:MBN.Utils.Caching.CacheExtension.RuntimeCache">
+            <summary>
+            AppSettings.CacheManager_RuntimeCache
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheExtension.GetCache``1(``0,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="cacheId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheExtension.GetCache``1(``0,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="cacheId"></param>
+            <param name="httpRuntimeCache">Ưu tiên lấy từ HttpRuntime.Cache</param>
+            <returns></returns>
+        </member>
+        <member name="P:MBN.Utils.Caching.CacheManager.CacheClient">
+            <summary>
+            Default Cache
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Caching.CacheManager.Instanse">
+            <summary>
+            Default Cache
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Caching.CacheManager.HttpRuntimeCache">
+            <summary>
+            HttpRuntiem.Cache
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Caching.CacheManager.CreateDefault">
+            <summary>
+            Sử dụng Cache được cài đặt appSettings với các key: CacheManager_Provider, CacheManager_Session, CacheManager_PrefixKey
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.ICache.Remove(System.String)">
+            <summary>
+            Chỉ sử dụng cho Redis
+            </summary>
+            <param name="prefixKey"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MBN.Utils.Caching.KetamaNodeLocator">
+            <summary>
+            Implements Ketama cosistent hashing, compatible with the "spymemcached" Java client
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Caching.KetamaNodeLocator.#ctor">
+            <summary>
+            Initialized a new instance of the <see cref="T:MBN.Utils.Caching.KetamaNodeLocator"/> using the default hash algorithm.
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Caching.KetamaNodeLocator.#ctor(System.String)">
+            <summary>
+            Initialized a new instance of the <see cref="T:MBN.Utils.Caching.KetamaNodeLocator"/> using a custom hash algorithm.
+            </summary>
+            <param name="hashName">The name of the hash algorithm to use.
+            <list type="table">
+            <listheader><term>Name</term><description>Description</description></listheader>
+            <item><term>md5</term><description>Equivalent of System.Security.Cryptography.MD5</description></item>
+            <item><term>sha1</term><description>Equivalent of System.Security.Cryptography.SHA1</description></item>
+            <item><term>tiger</term><description>Tiger Hash</description></item>
+            <item><term>crc</term><description>CRC32</description></item>
+            <item><term>fnv1_32</term><description>FNV Hash 32bit</description></item>
+            <item><term>fnv1_64</term><description>FNV Hash 64bit</description></item>
+            <item><term>fnv1a_32</term><description>Modified FNV Hash 32bit</description></item>
+            <item><term>fnv1a_64</term><description>Modified FNV Hash 64bit</description></item>
+            <item><term>murmur</term><description>Murmur Hash</description></item>
+            <item><term>oneatatime</term><description>Jenkin's "One at A time Hash"</description></item>
+            </list>
+            </param>
+            <remarks>If the hashName does not match any of the item on the list it will be passed to HashAlgorithm.Create.</remarks>
+        </member>
+        <member name="T:MBN.Utils.Caching.KetamaNodeLocator.LookupData">
+            <summary>
+            this will encapsulate all the indexes we need for lookup
+            so the instance can be reinitialized without locking
+            in case an IMemcachedConfig implementation returns the same instance form the CreateLocator()
+            </summary>
+        </member>
+        <member name="T:MBN.Utils.Caching.KetamaNodeLocatorFactory">
+            <summary>
+            Implements Ketama cosistent hashing, compatible with the "spymemcached" Java client
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Caching.RedisClient.GetKey(System.String[])">
+            <summary>
+            Tạo tổ hợp key từ một danh sách
+            </summary>
+            <param name="keys"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MBN.Utils.Caching.RedisClient.GetScore">
+            <summary>
+            Lấy score sử dụng cho SortedSet
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Caching.RedisClient.HashLength(System.String)">
+            <summary>
+            Tổng số field-value
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.RedisProvider.GetKey(System.String[])">
+            <summary>
+            Tạo tổ hợp key từ một danh sách
+            </summary>
+            <param name="keys"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MBN.Utils.Caching.RedisProvider.GetScore">
+            <summary>
+            Lấy score sử dụng cho SortedSet
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Caching.RedisProvider.Initialize(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sectionName"></param>
+            <param name="prefixKey"></param>
+        </member>
+        <member name="P:MBN.Utils.Caching.RedisProvider.Item(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MBN.Utils.Caching.RedisProvider.Item(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="runtimeCache"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.RedisProvider.GetValue``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.RedisProvider.GetValue``1(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="runtimeCache"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.RedisProvider.AddCache(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.RedisProvider.AddCache(System.String,System.Object,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="v"></param>
+            <param name="runtimeCache"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.RedisProvider.AddCache(System.String,System.Object,System.DateTime,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="v"></param>
+            <param name="absoluteExpiration"></param>
+            <param name="runtimeCache"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.RedisProvider.Remove(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Caching.RedisProvider.FlushAll">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MBN.Utils.Data.SqlProc">
+            <summary>
+            SQL Server stored procedure proxy
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Data.SqlProc.Reset">
+            <summary>
+            Xóa tất cả Parameters, Reset CommandText, Result, DataSet, RecordAffects
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.DynamicCode.ScriptCSharp.GenerateMapObject(System.Type,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="entityType"></param>
+            <param name="nameSpaceReader">ex: System.Data.Common.DbDataReader</param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Extension.ExtensionUtils.ToXml``1(System.Collections.Generic.List{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="q"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Extension.ExtensionUtils.yyyyMMdd(System.DateTime)">
+            <summary>
+            Định dạng yyyyMMdd
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Extension.ExtensionUtils.yyyyMMddHHmmss(System.DateTime)">
+            <summary>
+            Định dạng yyyy-MM-dd HH:mm:ss
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Extension.ExtensionUtils.ToISO8601(System.DateTime)">
+            <summary>
+            ISO 8601 (UTC)
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Extension.ExtensionUtils.ToJSON(System.Data.DataTable)">
+            <summary>
+            Chuyển dữ liệu DataTable sang JSON
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MBN.Utils.Files.FileData.IncludeImage">
+            <summary>
+            Có file dữ liệu đính kèm hay không
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Files.FileData.TotalRecord">
+            <summary>
+            Tổng số mẩu tin
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Files.FileData.FileDate">
+            <summary>
+            Ngày tạo
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Files.FileData.FileSize">
+            <summary>
+            Dung lượng
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Files.FileData.CreateFile(System.Data.DataTable,System.String,MBN.Utils.Files.FileData.CharsetType,System.Boolean,System.Boolean)">
+            <summary>
+            Tạo tập tin từ một bảng dữ liệu
+            </summary>
+            <param name="table">Dữ liệu cần tạo</param>
+            <param name="fileName">Tên tập tin sẽ được tạo</param>
+            <param name="charset">Cho biết mã của bảng dữ liệu truyền vào: UTF-8/Unicode/UTF-7</param>
+            <param name="compress">Cho biết tập tin tạo ra co nén hay không (chuẩn GZip)</param>
+            <param name="includeImage">Có đính kèm file hình hay không</param>
+        </member>
+        <member name="M:MBN.Utils.Files.FileData.OpenFile(System.String,MBN.Utils.Files.FileData.OpenMode)">
+            <summary>
+            Mở tập tin cho phép Read hoặc ReadWrite
+            </summary>
+            <param name="fileName">Tên tập tin cần mở</param>
+            <param name="mode">Mở để Read hoặc ReadWrite</param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Files.FileData.LoadFromFile(System.String)">
+            <summary>
+            Trả về một bảng dữ liệu
+            </summary>
+            <param name="fileName">Tên tập tin chứa dữ liệu</param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Files.FileData.WriteRecord(System.Data.DataRow)">
+            <summary>
+            Ghi dữ liệu 1 Record. Mặc định cập nhật lại tổng số Record
+            </summary>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Files.FileData.WriteRecord(System.Data.DataRow,System.Boolean)">
+            <summary>
+            Ghi dữ liệu 1 Record
+            </summary>
+            <param name="row"></param>
+            <param name="updateTotal">true: Cập nhật tổng số Record</param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Files.ReadWrite.ReadBlockSize(System.IO.Stream)">
+            <summary>
+            Không kiểm tra Null
+            </summary>
+            <param name="m"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Files.ReadWrite.WriteBlockSize(System.IO.Stream,System.Int32)">
+            <summary>
+            Không kiểm tra Null
+            </summary>
+            <param name="m"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Fonts.IsUnicodeComposite(System.String)">
+            <summary>
+            Kiểm tra chuỗi nội dung có phải là Unicode Tổ hợp hay không
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Fonts.#ctor(MBN.Utils.Fonts.ConvertType)">
+            <summary>
+            Chuyển đổi sang Unicode
+            </summary>
+            <param name="fromType"></param>
+        </member>
+        <member name="M:MBN.Utils.Fonts.#ctor(MBN.Utils.Fonts.ConvertType,MBN.Utils.Fonts.ConvertType)">
+            <summary>
+            Chuyển FONT từ bảng mã này sang bảng mã kia.
+            </summary>
+            <param name="fromType"></param>
+            <param name="toType"></param>
+        </member>
+        <member name="M:MBN.Utils.Helper.AutoCoder.CreateModel(System.String,System.String,System.String,System.String,System.String[])">
+            <summary>
+            Create Model
+            </summary>
+            <param name="template"></param>
+            <param name="nameSpace"></param>
+            <param name="modelName"></param>
+            <param name="author"></param>
+            <param name="fields">fields-item ex: private int _id </param>
+            <returns></returns>
+        </member>
+        <member name="P:MBN.Utils.Helper.MenuItem.ID">
+            <summary>
+            Mã quản lý
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Helper.MenuItem.Code">
+            <summary>
+            Mã chức năng
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Helper.MenuItem.Text">
+            <summary>
+            Tiêu đề Menu
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Helper.MenuItem.Url">
+            <summary>
+            Liên kết
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Helper.MenuItem.Css">
+            <summary>
+            CssClass
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Helper.MenuItem.Rel">
+            <summary>
+            Rel
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Helper.MenuItem.Enabled">
+            <summary>
+            Enabled=false: không hiển thị
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Helper.MenuItem.Sort">
+            <summary>
+            Thư tự hiển thị
+            </summary>
+        </member>
+        <member name="T:MBN.Utils.Helper.PaginationType">
+            <summary>
+            Pagination type enumeration
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationType.Default">
+            <summary>
+            Default page link
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationType.DefaultWithItemRight">
+            <summary>
+            Default page link with item on the right 
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationType.DefaultWithItemLeft">
+            <summary>
+            Default page link with item on the left
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationType.PreviousNext">
+            <summary>
+            Previous, next page link
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationType.PreviousNextItemRight">
+            <summary>
+            Previous, next page link with item on the right
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationType.PreviousNextItemLeft">
+            <summary>
+            Previous, next page link with item on the left
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationType.PreviousNextItemCenter">
+            <summary>
+            Previous, next page link with item on the center
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationType.FirstPreviousNextLast">
+            <summary>
+            First, previous, next, last page link
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationType.FirstPreviousNextLastItemRight">
+            <summary>
+            First, previous, next, last page link with item on the right
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationType.FirstPreviousNextLastItemLeft">
+            <summary>
+            First, previous, next, last page link with item on the left
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationType.FirstPreviousNextLastItemCenter">
+            <summary>
+            First, previous, next, last page link with item on the center
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationType.Number">
+            <summary>
+            Number page link
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationType.NumberWithItemRight">
+            <summary>
+            Number page link with item on the right
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationType.NumberWithItemLeft">
+            <summary>
+            Number page link with item on the left
+            </summary>
+        </member>
+        <member name="T:MBN.Utils.Helper.PaginationItemTypes">
+            <summary>
+            Item type enumeration
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationItemTypes.Item">
+            <summary>
+            Displaying (n) to (n) of (n) Items
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationItemTypes.Page">
+            <summary>
+            Page (n) of (n)
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Helper.PaginationItemTypes.Digit">
+            <summary>
+            (n)/(n)
+            </summary>
+        </member>
+        <member name="T:MBN.Utils.Helper.CI_Pagination">
+            <summary>
+            Pagination class
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.BaseUrl">
+            <summary>
+            Gets or sets url to controller/action.
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.TotalRows">
+            <summary>
+            Gets or sets the total rows in the result set.
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.PerPage">
+            <summary>
+            Gets or sets the number item per page.
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.NumLinks">
+            <summary>
+            Gets or sets the number of "digit" links before and after the selected page number.
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.CurPage">
+            <summary>
+            Gets or sets the current selected page.
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.FirstLink">
+             <summary>
+             Gets or sets the text to be shown in the "first" link on the left.
+             </summary>
+            [XmlAttribute("FirstLink")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.NextLink">
+            <summary>
+            Gets or sets the text to be shown in the "next" page link.
+            </summary>
+            [XmlAttribute("NextLink")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.PrevLink">
+             <summary>
+             Gets or sets the text to be shown in the "previous" page link.
+             </summary>
+            [XmlAttribute("PrevLink")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.LastLink">
+             <summary>
+             Gets or sets the text to be shown in the "last" link on the right.
+             </summary>
+            [XmlAttribute("LastLink")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.FullTagOpen">
+            <summary>
+            Gets or sets the opening tag placed on the left side of the entire result.
+            </summary>
+            [XmlAttribute("FullTagOpen")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.FullTagClose">
+             <summary>
+             Gets or sets the closing tag placed on the right side of the entire result.
+             </summary>
+            [XmlAttribute("FullTagClose")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.FirstTagOpen">
+             <summary>
+             Gets or sets the opening tag for the "first" link.
+             </summary>
+            [XmlAttribute("FirstTagOpen")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.FirstTagClose">
+            <summary>
+            Gets or sets the closing tag for the "first" link.
+            </summary>
+            [XmlAttribute("FirstTagClose")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.LastTagOpen">
+             <summary>
+             Gets or sets the opening tag for the "last" link.
+             </summary>
+            [XmlAttribute("LastTagOpen")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.LastTagClose">
+             <summary>
+             Gets or sets the closing tag for the "last" link.
+             </summary>
+            [XmlAttribute("LastTagClose")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.CurTagOpen">
+             <summary>
+             Gets or sets the opening tag for the "current" link.
+             </summary>
+            [XmlAttribute("CurTagOpen")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.CurTagClose">
+             <summary>
+             Gets or sets the closing tag for the "current" link.
+             </summary>
+            [XmlAttribute("CurTagClose")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.NextTagOpen">
+             <summary>
+             Gets or sets the opening tag for the "next" link.
+             </summary>
+            [XmlAttribute("NextTagOpen")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.NextTagClose">
+             <summary>
+             Gets or sets the closing tag for the "next" link.
+             </summary>
+            [XmlAttribute("NextTagClose")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.PrevTagOpen">
+             <summary>
+             Gets or sets the opening tag for the "previous" link.
+             </summary>
+            [XmlAttribute("PrevTagOpen")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.PrevTagClose">
+             <summary>
+             Gets or sets the closing tag for the "previous" link.
+             </summary>
+            [XmlAttribute("PrevTagClose")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.NumTagOpen">
+             <summary>
+             Gets or sets the opening tag for the "digit" link.
+             </summary>
+            [XmlAttribute("NumTagOpen")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.NumTagClose">
+             <summary>
+             Gets or sets the closing tag for the "digit" link.
+             </summary>
+            [XmlAttribute("NumTagClose")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.ItemTagOpen">
+             <summary>
+             Gets or sets the opening tag for the "Item".
+             </summary>
+            [XmlAttribute("ItemTagOpen")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.ItemTagClose">
+             <summary>
+             Gets or sets the closing tag for the "Item".
+             </summary>
+            [XmlAttribute("ItemTagClose")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.ItemType">
+             <summary>
+             Gets or sets the item type.
+             </summary>
+            [XmlAttribute("ItemType")]
+        </member>
+        <member name="P:MBN.Utils.Helper.CI_Pagination.NumPages">
+             <summary>
+             Gets or sets the total number of pages
+             </summary>
+            [XmlAttribute("NumPages")]
+        </member>
+        <member name="M:MBN.Utils.Helper.CI_Pagination.LoadPaginationXml(System.String)">
+            <summary>
+            Load the Pagination Configuration from Xml
+            </summary>
+            <param name="xmlFile">string, Pagination.xml File Path</param>
+        </member>
+        <member name="M:MBN.Utils.Helper.CI_Pagination.GetPageLinks">
+            <summary>
+            Get the page links
+            </summary>
+            <returns>Page link string</returns>
+        </member>
+        <member name="M:MBN.Utils.Helper.CI_Pagination.GetPageLinks(MBN.Utils.Helper.PaginationType)">
+            <summary>
+            Get the page links
+            </summary>
+            <param name="pageType">Pagination type</param>
+            <returns>Page link string</returns>
+        </member>
+        <member name="M:MBN.Utils.Helper.CI_Pagination.SetPaginationSettings(System.String,System.String)">
+            <summary>
+            Set the Pagination Configuration Settings
+            </summary>
+            <param name="propertyName">Configuration Property Name</param>
+            <param name="propertyValue">Configuration Property Value</param>
+        </member>
+        <member name="M:MBN.Utils.Helper.CI_Pagination.IsValidSettings">
+            <summary>
+            Check if everythings are ok
+            </summary>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:MBN.Utils.Helper.CI_Pagination.BuildFirstLink(System.Text.StringBuilder,System.Boolean)">
+            <summary>
+            Build the "First" link
+            </summary>
+            <param name="pageLink">StringBuilder, pageLink</param>
+            <param name="isDefault">bool, isDefault</param>
+        </member>
+        <member name="M:MBN.Utils.Helper.CI_Pagination.BuildPreviousLink(System.Text.StringBuilder,System.Boolean)">
+            <summary>
+            Build the "Previous" link
+            </summary>
+            <param name="pageLink">StringBuilder, pageLink</param>
+            <param name="isDefault">bool, isDefault</param>
+        </member>
+        <member name="M:MBN.Utils.Helper.CI_Pagination.BuildDigitLink(System.Text.StringBuilder)">
+            <summary>
+            Build the "Digits" link
+            </summary>
+            <param name="pageLink">StringBuilder, pageLink</param>
+        </member>
+        <member name="M:MBN.Utils.Helper.CI_Pagination.BuildNextLink(System.Text.StringBuilder,System.Boolean)">
+            <summary>
+            Build the "Next" Link
+            </summary>
+            <param name="pageLink">StringBuilder, pageLink</param>
+            <param name="isDefault">bool, isDefault</param>
+        </member>
+        <member name="M:MBN.Utils.Helper.CI_Pagination.BuildLastLink(System.Text.StringBuilder,System.Boolean)">
+            <summary>
+            Build the "Last" link
+            </summary>
+            <param name="pageLink">StringBuilder, pageLink</param>
+            <param name="isDefault">bool, isDefault</param>
+        </member>
+        <member name="M:MBN.Utils.Helper.CI_Pagination.BuildItemLink(System.Text.StringBuilder)">
+            <summary>
+            Build the "Item" link
+            </summary>
+            <param name="pageLink">StringBuilder, pageLink</param>
+        </member>
+        <member name="M:MBN.Utils.Helper.CI_Pagination.BuildDefaultLink(System.Text.StringBuilder)">
+            <summary>
+            Build the Default link
+            </summary>
+            <param name="pageLink">StringBuilder, pageLink</param>
+        </member>
+        <member name="M:MBN.Utils.Helper.CI_Pagination.BuildPreviousNextLink(System.Text.StringBuilder)">
+            <summary>
+            Build the PreviousNext link
+            </summary>
+            <param name="pageLink">StringBuilder, pageLink</param>
+        </member>
+        <member name="M:MBN.Utils.Helper.CI_Pagination.BuildFirstPreviousNextLastLink(System.Text.StringBuilder)">
+            <summary>
+            Build the FirstPreviousNextLast link
+            </summary>
+            <param name="pageLink">StringBuilder, pageLink</param>
+        </member>
+        <member name="M:MBN.Utils.Js.RegisterShortkey(System.Web.UI.Page,System.String[])">
+            <summary>
+            ClientID: Save|New|Edit|Delete
+            </summary>
+            <param name="P"></param>
+        </member>
+        <member name="T:MBN.Utils.Security.Encryption">
+            <summary>
+            This class provide static methods for encryption and decryption.
+            </summary>
+        </member>
+        <member name="F:MBN.Utils.Security.Encryption.DefaultPassword">
+            <summary>
+            Password mặc định
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.EncryptString(System.String,System.String)">
+            <summary>
+            Method which does the encryption using Rijndeal algorithm
+            </summary>
+            <param name="inputText">Data to be encrypted</param>
+            <param name="Password">The string to used for making the key.The same string
+            should be used for making the decrpt key</param>
+            <returns>Encrypted Data</returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.DecryptString(System.String,System.String)">
+            <summary>
+            Method which does the encryption using Rijndeal algorithm.This is for decrypting the data
+            which has orginally being encrypted using the above method
+            </summary>
+            <param name="inputText">The encrypted data which has to be decrypted</param>
+            <param name="Password">The string which has been used for encrypting.The same string
+            should be used for making the decrypt key</param>
+            <returns>Decrypted Data</returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.GetMd5Sum(System.String)">
+            <summary>
+            MD5
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.GetHash(System.Object[])">
+            <summary>
+            MD5: Mã hóa một chiều
+            </summary>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.VerifyHash(System.String,System.Object[])">
+            <summary>
+            MD5: Kiểm tra giá trị mã hóa một chiều
+            </summary>
+            <param name="hash"></param>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.MD5(System.String)">
+            <summary>
+            MD5
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.SHA1(System.String)">
+            <summary>
+            SHA1
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.SHA256(System.String)">
+            <summary>
+            SHA256
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.SHA1WithKey(System.String,System.String[])">
+            <summary>
+            SHA1
+            </summary>
+            <param name="key">SHA1_KEY_{key} - AppSettings </param>
+            <param name="items">string.Join("|", items) + "|" + KeyValue </param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.SHA256WithKey(System.String,System.String[])">
+            <summary>
+            SHA256
+            </summary>
+            <param name="key">SHA256_KEY_{key} - AppSettings </param>
+            <param name="items">string.Join("|", items) + "|" + KeyValue </param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.CreateOTP(System.String,System.Int64,System.DateTime)">
+            <summary>
+            Tạo OTP
+            </summary>
+            <param name="service">Dịch vụ sử dụng</param>
+            <param name="referId">ID liên quan</param>
+            <param name="d">Thời gian tạo OTP</param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.VerifyOTP(System.String,System.Int64,System.DateTime,System.Int32)">
+            <summary>
+            Kiểm tra OTP chỉ có giá trị trong 02 ngày
+            </summary>
+            <param name="service"></param>
+            <param name="referId"></param>
+            <param name="d"></param>
+            <param name="OTP"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.CreateRandSMSCode(System.String,System.Int64,System.DateTime)">
+            <summary>
+            Tạo mã ngẫu nhiên cho giao dịch SMS (1-2 chữ số)
+            </summary>
+            <param name="service"></param>
+            <param name="referId"></param>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.VerifySMSCode(System.String,System.Int64,System.DateTime,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Kiểm tra mã xác nhận giao dịch SMS (Chỉ có hiệu lực trong vòng 30 phút)
+            </summary>
+            <param name="service">Dịch vụ sử dụng</param>
+            <param name="referId">ID liên quan của giao dịch</param>
+            <param name="d">Ngày giờ tạo mã</param>
+            <param name="pinSMS">Số bí mật khách chọn</param>
+            <param name="operation">Toán tử khách chọn(1: Cộng; 2: Trừ; 3: Nhân)</param>
+            <param name="smsCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.GetRandomNumber(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="length">max:18</param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.Encryption.GetRandomCoupon(System.Int32)">
+            <summary>
+            Tạo mã bao gồm các ký tự: 123456789ABCDEFGHKQRSTUVX
+            </summary>
+            <param name="length">max: 20</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:MBN.Utils.Security.RSA.RSACreateKey(System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:MBN.Utils.Security.RSA.RSACreateKey(System.Int32,System.String,System.Boolean)" -->
+        <member name="M:MBN.Utils.Security.RSA.EncryptString(System.String)">
+            <summary>
+            Mã hóa RSA (1024 bit) với RSAClientEncryptKey chỉ định trong AppSettings
+            </summary>
+            <param name="inputString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.RSA.DecryptString(System.String)">
+            <summary>
+            Giải mã RSA (1024 bit) với RSAClientDecryptKey chỉ định trong AppSettings
+            </summary>
+            <param name="inputString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.RSA.EncryptString(System.String,System.Int32,System.String)">
+            <summary>
+            Mã hóa RSA
+            </summary>
+            <param name="inputString"></param>
+            <param name="dwKeySize">Số bit mã hóa</param>
+            <param name="xmlString">Key mã hóa</param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.RSA.DecryptString(System.String,System.Int32,System.String)">
+            <summary>
+            Giải mã RSA
+            </summary>
+            <param name="inputString"></param>
+            <param name="dwKeySize">Số bit mã hóa</param>
+            <param name="xmlString">Key giải mã</param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.RSA.GetMessageSignature(System.Byte[],System.String)">
+            <summary>
+            Tạo chữ ký
+            </summary>
+            <param name="message"></param>
+            <param name="privateKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.RSA.VerifyMessageSignature(System.Byte[],System.Byte[],System.String)">
+            <summary>
+            Xác nhận chữ ký với keySize mặc định
+            </summary>
+            <param name="message"></param>
+            <param name="signature"></param>
+            <param name="publicKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.RSA.VerifyMessageSignature(System.Byte[],System.Byte[],System.String,System.Int32)">
+            <summary>
+            Xác nhận chữ ký
+            </summary>
+            <param name="message"></param>
+            <param name="signature"></param>
+            <param name="publicKey"></param>
+            <param name="dwKeySize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.RSA.VerifyMessageSignature_X509Certificate(System.Byte[],System.Byte[],System.String)">
+            <summary>
+            Xác nhận chữ ký
+            </summary>
+            <param name="message"></param>
+            <param name="signature"></param>
+            <param name="certPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.RSA.VerifyMessageSignature(System.String,System.String,System.String[])">
+            <summary>
+            Xác nhận chữ ký
+            </summary>
+            <param name="signKey">Trong AppSetting thêm Key=RSA_PUBLIC_{signKey}</param>
+            <param name="sig"></param>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Security.RSA.GetMessageSignature(System.String,System.String[])">
+            <summary>
+            Tạo chữ ký từ thông tin truyền vào (items)
+            </summary>
+            <param name="signKey">Trong AppSetting thêm Key=RSA_PRIVATE_{signKey}</param>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MBN.Utils.SerializationUtility">
+            <summary>
+            Utility class for serializing and deserializing objects to and from byte streams
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.SerializationUtility.ToBytes(System.Object)">
+            <summary>
+            Converts an object into an array of bytes. Object must be serializable.
+            </summary>
+            <param name="value">Object to serialize. May be null.</param>
+            <returns>Serialized object, or null if input was null.</returns>
+        </member>
+        <member name="M:MBN.Utils.SerializationUtility.ToObject(System.Byte[])">
+            <summary>
+            Converts a byte array into an object. 
+            </summary>
+            <param name="serializedObject">Object to deserialize. May be null.</param>
+            <returns>Deserialized object, or null if input was null.</returns>
+        </member>
+        <member name="M:MBN.Utils.SerializationUtility.ToXml(System.Object)">
+            <summary>
+            Converts an object into string. Object must be serializable.
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.SerializationUtility.ToObject(System.Type,System.String)">
+            <summary>
+            Converts xml string into an object. 
+            </summary>
+            <param name="type"></param>
+            <param name="xml"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.StringUtils.GetLeft(System.String,System.Int32)">
+            <summary>
+            Lấy chuỗi bên trái bao nhiêu ký tự
+            </summary>
+            <param name="s"></param>
+            <param name="NumberOfChar"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MBN.Utils.TaskScheduler.BackgroundScheduler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.TaskScheduler.BackgroundScheduler.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.TaskScheduler.BackgroundScheduler.Start(System.String,MBN.Utils.TaskScheduler.ITask,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="serviceKey"></param>
+            <param name="task"></param>
+            <param name="seconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.TaskScheduler.BackgroundScheduler.Stop(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="serviceKey"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MBN.Utils.TaskScheduler.ITask">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.TaskScheduler.ITask.Run(System.Object)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MBN.Utils.TaskScheduler.ExpirationPollTimer">
+            <summary>
+            Represents an expiration poll timer.
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.TaskScheduler.ExpirationPollTimer.StartPolling(System.Threading.TimerCallback,System.Int32)">
+            <summary>
+            Start the polling process.
+            </summary>
+            <param name="callbackMethod">The method to callback when a cycle has completed.</param>
+            <param name="pollCycleInMilliseconds">The time in milliseconds to poll.</param>
+        </member>
+        <member name="M:MBN.Utils.TaskScheduler.ExpirationPollTimer.StopPolling">
+            <summary>
+            Stop the polling process.
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Mail.ClearAddress">
+            <summary>
+            Clear To, Cc, Bcc
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.Mail.BodyHTML">
+            <summary>
+            Nội dung là HTML
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Mail.EncodeForISO(System.String)">
+            <summary>
+            Chuyển đổi bảng mã ISO
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Mail.AddRecipients(System.String,MBN.Utils.Mail.AddressType)">
+            <summary>
+            Phân tích chuỗi địa chỉ các email và thêm vào Message. Trả về số lượng địa chỉ đã thêm vào.
+            </summary>
+            <param name="Addresses">Chuỗi chứa các địa chỉ</param>
+            <param name="t">0 = To, 1 = CC, 2 = BCC</param>
+        </member>
+        <member name="M:MBN.Utils.Mail.AddMailTo(System.String)">
+            <summary>
+            Gửi đến nhiều địa chỉ Email
+            </summary>
+            <param name="emails"></param>
+        </member>
+        <member name="M:MBN.Utils.Mail.Send">
+            <summary>
+            Gửi mail và chờ kết quả trả về
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:MBN.Utils.Mail.OnSendCompleted">
+            <summary>
+            Occurs when asynchronous e-mail send operation completes.
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Mail.SendAsync">
+            <summary>
+            Gửi mail và không chờ kết quả trả về
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.Mail.SendAsync(System.String)">
+            <summary>
+            Gửi mail và không chờ kết quả trả về
+            </summary>
+            <param name="configSmtpName">Host|Port|EnableSsl|UserName|Password</param>
+        </member>
+        <member name="M:MBN.Utils.Mail.AttachFile(System.String)">
+            <summary>
+            File đính kèm 
+            </summary>
+            <param name="fullName"></param>
+        </member>
+        <member name="M:MBN.Utils.Mail.AttachInlineFile(System.String,System.String)">
+            <summary>
+            Kèm hình hiển thị trong nội dung
+            </summary>
+            <param name="fullName"></param>
+            <param name="altName"></param>
+        </member>
+        <member name="M:MBN.Utils.Mail.AttachInlineFile(System.String[],System.String,System.String)">
+            <summary>
+            Kèm nhiều hình hiển thị trong nội dung
+            </summary>
+            <param name="files"></param>
+            <param name="physicalPath"></param>
+            <param name="prefix"></param>
+        </member>
+        <member name="M:MBN.Utils.Mail.ReplaceImageSrc(System.String@,System.String[]@)">
+            <summary>
+            Thay thế hình từ tag IMG
+            </summary>
+            <param name="input"></param>
+            <param name="imgs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Mail.Send(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Cấu hình email để gửi trong Web.Config (AppSettings)
+            </summary>
+            <param name="configMailFrom">Cấu hình trong AppSettings (configMailFrom_From và configMailFrom_FromName)</param>
+            <param name="mailTo"></param>
+            <param name="Cc"></param>
+            <param name="Bcc"></param>
+            <param name="subject"></param>
+            <param name="body"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.Mail.SendAsync(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="configMailFrom"></param>
+            <param name="mailTo"></param>
+            <param name="Cc"></param>
+            <param name="Bcc"></param>
+            <param name="subject"></param>
+            <param name="body"></param>
+        </member>
+        <member name="T:MBN.Utils.WebUtils">
+            <summary>
+            Các tiện ích hỗ trợ Web
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.LoadConfig">
+            <summary>
+            Khởi tạo các các thông số thiết lập từ Web.Config
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.WebUtils.DefaultTemplate">
+            <summary>
+            Template mặc định
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.GetDefaultTemplateByKey(System.String,System.String)">
+            <summary>
+            Lấy TemplateItem 
+            </summary>
+            <param name="key"></param>
+            <param name="def"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.DefaultTemplateCallback(System.String,System.Object,System.Web.Caching.CacheItemRemovedReason)">
+            <summary>
+            Khi thay đổi file DefaultTemplate
+            </summary>
+            <param name="key"></param>
+            <param name="v"></param>
+            <param name="reason"></param>
+        </member>
+        <member name="P:MBN.Utils.WebUtils.UrlHome">
+            <summary>
+            Trang chủ
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.WebUtils.UrlCPanel">
+            <summary>
+            Trang quản trị
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.WebUtils.UrlJS">
+            <summary>
+            Đường dẫn chứa file JS
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.WebUtils.UrlImage">
+            <summary>
+            Đường dẫn hình mặc định
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.WebUtils.UrlUploadImage">
+            <summary>
+            Đường dẫn upload hình (Physical Path)
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.WebUtils.ImageSize">
+            <summary>
+            Kích thước hình upload
+            </summary>
+        </member>
+        <member name="P:MBN.Utils.WebUtils.ImageThumbWidth">
+            <summary>
+            Chiều rộng mặc định của hình Thumb (width: 90px)
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.AcceptImage(System.String)">
+            <summary>
+            Xác định các loại file được upload
+            </summary>
+            <param name="fileType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.AllowUploadImage(System.String,System.Int32)">
+            <summary>
+            Kiểm tra loại file và dung lượng
+            </summary>
+            <param name="ext"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.CheckImageForUpload(System.Web.HttpPostedFile)">
+            <summary>
+            Kiểm tra hình có được upload hay không
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.UploadFolder(System.String,System.Int64)">
+            <summary>
+            GID=12345 => Create: folder + 1\2\3\
+            </summary>
+            <param name="folder"></param>
+            <param name="GID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.GetUploadFolder(System.Int64)">
+            <summary>
+            GID=12345 => return: folder + 1/2/3/
+            </summary>
+            <param name="GID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.GetUploadFolder(System.Int64,System.Char)">
+            <summary>
+            GID=12345 => return: folder + 1[Sepa]2[Sepa]3[Sepa]
+            </summary>
+            <param name="GID"></param>
+            <param name="Sepa"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.GetMediaPath(System.Int64,System.String)">
+            <summary>
+            GID=123456 => return: 123/
+            </summary>
+            <param name="GID"></param>
+            <param name="sepa"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.GetMediaVirtualPath(System.Int32,System.DateTime,System.String)">
+            <summary>
+            Tạo link đến file media
+            VD: referId=123456, created=23/07/2013, fileExt=.jpg
+            return 201307/23/123/123456_{random}.jpg
+            </summary>
+            <param name="referId"></param>
+            <param name="created"></param>
+            <param name="fileExt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.GetMediaVirtualPathV3(System.DateTime,System.String)">
+            <summary>
+            Tạo link đến file media
+            VD: created=2015-09-01 15:06, fileExt=jpg
+            return 201307/23/506/{random}.jpg
+            </summary>
+            <param name="referId"></param>
+            <param name="created"></param>
+            <param name="fileExt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.GetGoodFileName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MBN.Utils.WebUtils.CultureName">
+            <summary>
+            Language 
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.GetPlainText(System.String)">
+            <summary>
+            Xóa các tag HTML
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.GetPlainTextAcceptBR(System.String)">
+            <summary>
+            Xóa tag HTML trừ xuống dòng
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.FormatTemplateSkin(System.String,System.Boolean,System.Object[])">
+            <summary>
+            Format and EncodeISO_8859_1
+            </summary>
+            <param name="SkinFile"></param>
+            <param name="SaveInCache"></param>
+            <param name="KeysValues"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.FormatTemplateContent(System.String,System.Object[])">
+            <summary>
+            Format only
+            </summary>
+            <param name="Content"></param>
+            <param name="KeysValues"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:MBN.Utils.WebUtils.ExtractSubTemplatesFromFile(System.String,System.String)" -->
+        <member name="M:MBN.Utils.WebUtils.ExtractSubTemplates(System.String)">
+            <summary>
+            Return Hashtable collection of extracted name (uppercase: ITEMTEMPLATE/HASIMAGE...) and Content.
+            </summary>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.ExtractResource(System.String,System.String)">
+            <summary>
+            Extract file from Resource
+            </summary>
+            <param name="fileName"></param>
+            <param name="resName"></param>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.RemoveAccents(System.String)">
+            <summary>
+            Xóa dấu của các ký tự tiếng việt
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.RemoveDeviceCharacters(System.String)">
+            <summary>
+            Xóa các ký tự điều khiển
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MBN.Utils.WebUtils.PhysicalAppPath">
+            <summary>
+            Thư mục gốc ứng dụng Web
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.RegisterClientValue(System.Web.UI.Page,System.String,System.String)">
+            <summary>
+            Đăng ký một giá trị vào JavaScript của trang Web, hàm đặt trong PageLoad
+            </summary>
+            <param name="page"></param>
+            <param name="varName">Tên biến</param>
+            <param name="varValue">Giá trị</param>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.RegisterConfirm(System.Web.UI.WebControls.DataGrid,System.String,System.String)">
+            <summary>
+            Tạo confirmation cho các nút bấm trong Grid
+            </summary>
+            <param name="grd">Grid Object</param>
+            <param name="buttonId">Id của button</param>
+            <param name="registeredVarName">VarName đã được đăng ký bằng RegisterClientValue trong PageLoad</param>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.RegisterConfirmControl(System.Web.UI.WebControls.WebControl,System.String)">
+            <summary>
+            Tạo confirmation cho các nút bấm bất kỳ
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.RegisterSWFObject(System.Web.UI.Page)">
+            <summary>
+            Đăng ký Js create SWF Object
+            </summary>
+            <param name="P"></param>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.ToDateTime(System.String)">
+            <summary>
+            Chuyển chuỗi sang DateTime theo CultureInfo hiện tại
+            </summary>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.EscapeJS(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.EscapeJS(System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="s"></param>
+            <param name="chars"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.EscapeFileName(System.String)">
+            <summary>
+            Thay thế các ký tự không cho phép khi đặt tên file
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.DropLongLines(System.String)">
+            <summary>
+            Drops line that too long, a html code line longer than 4000
+             may cause unreconized by Browsers or Email clients. For unicode text, you should devided maximum length by 2 for UTF-8 encoding
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.HTMLToJs(System.String)">
+            <summary>
+            Chuyển HTML thành Js (document.write)
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.EncodeForISOJavaScript(System.String)">
+            <summary>
+            Encode Iso
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.RemoveCacheTemplates">
+            <summary>
+            Xóa cache Templates
+            </summary>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.LoadTemplate(System.String)">
+            <summary>
+            Các file Template để trong thư mục res\templates\[language: vi-VN, en-US, ...]
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.LoadTemplate(System.String,System.String)">
+            <summary>
+            Các file Template để trong thư mục res\templates\[language: vi-VN, en-US, ...]
+            </summary>
+            <param name="fileName"></param>
+            <param name="beginMacro"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.ExtractMacros(System.String)">
+            <summary>
+            Extract macros from Templates
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.ExtractMacros(System.String,System.String)">
+            <summary>
+            Extract macros from Templates
+            </summary>
+            <param name="s"></param>
+            <param name="beginMacro"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.FormatTemplateString(System.String,System.String[])">
+            <summary>
+            Thay thế các giá trị trong Template
+            </summary>
+            <param name="src"></param>
+            <param name="P"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.FormatTemplate(System.String,System.Boolean,System.String[])">
+            <summary>
+            Thay thế các giá trị trong Template (Fast) 
+            </summary>
+            <param name="fileTemplate">res\templates\*.htm</param>
+            <param name="encodeIso"></param>
+            <param name="P"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.FormatTemplateV2(System.String,System.Boolean,System.String[])">
+            <summary>
+            Thay thế các giá trị trong Template (Fast) 
+            </summary>
+            <param name="fileTemplate">res\templates\*.htm</param>
+            <param name="encodeIso"></param>
+            <param name="P"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.FormatTemplateV2(System.String,System.String,System.Boolean,System.String[])">
+            <summary>
+            Thay thế các giá trị trong Template (Fast) 
+            </summary>
+            <param name="fileTemplate">res\templates\*.htm</param>
+            <param name="beginMacro"></param>
+            <param name="encodeIso"></param>
+            <param name="P"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.FormatTemplate(System.String,System.Collections.ArrayList,System.Boolean,System.String[])">
+            <summary>
+            Thay thế các giá trị trong Template (Fast) 
+            </summary>
+            <param name="content"></param>
+            <param name="macros"></param>
+            <param name="encodeIso"></param>
+            <param name="P"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.FormatTemplate(System.String,System.Collections.ArrayList,System.Collections.Hashtable,System.Boolean)">
+            <summary>
+            Thay thế các giá trị trong Template (Fast) 
+            </summary>
+            <param name="content">Template</param>
+            <param name="macros"></param>
+            <param name="p"></param>
+            <param name="encodeIso"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MBN.Utils.WebUtils.FormatTemplate(System.String,System.String,System.Boolean,System.String[])">
+            <summary>
+            Thay thế các giá trị trong Template (Fast) 
+            </summary>
+            <param name="content"></param>
+            <param name="cacheKey"></param>
+            <param name="encodeIso"></param>
+            <param name="P"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
