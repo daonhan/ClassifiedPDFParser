@@ -16,5 +16,10 @@ namespace ClassifiedPrint.Core.Models
         public DateTime Created { get; set; }
         public int Col { get; set; }
         public int Page { get; set; }
+
+        public int AreaId { get; set; }
+        public int PressNo { get; set; }
+        public DateTime PostDate { get; set; }
+
     }
 }
