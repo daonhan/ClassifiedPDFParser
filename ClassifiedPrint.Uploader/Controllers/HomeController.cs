@@ -18,6 +18,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Concurrent;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using System.Globalization;
 
 namespace ClassifiedPrint.Uploader.Controllers
 {
@@ -34,10 +35,14 @@ namespace ClassifiedPrint.Uploader.Controllers
         //const double MAX_COL4 = 649.6376;
         const float MIN_COL5 = 636;
         private readonly Regex rx = new Regex(@"\t|\n|\r|\s+|\?|\(|\)|\-|\/|\,|\:|\.|\;|\[|\]|\–|\…|\""|\”");
+        // filters control characters but allows only properly-formed surrogate sequences
+        private readonly Regex invalidXMLChars = new Regex(
+            @"(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]|&#x([0-8BCEF]|1[0-9A-F]);|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\uFEFF\uFFFE\uFFFF]",
+            RegexOptions.Compiled);
         private readonly INewspaperRespository service;
         private readonly IHostingEnvironment hostingEnvironment;
         private readonly IConfiguration configuration;
-        private readonly ConcurrentDictionary<int, Newspaper> parsed  = new ConcurrentDictionary<int, Newspaper>();
+        private readonly ConcurrentDictionary<string, Newspaper> parsed  = new ConcurrentDictionary<string, Newspaper>();
         private readonly ConcurrentDictionary<int, Dictionary<int, StringBuilder>>  dPages = new ConcurrentDictionary<int, Dictionary<int, StringBuilder>>();
         public HomeController(INewspaperRespository repository, IHostingEnvironment environment, IConfiguration config)
         {
@@ -57,6 +62,22 @@ namespace ClassifiedPrint.Uploader.Controllers
             {
                 throw new InvalidDataException("Loại file không hợp lệ. Chỉ chấp nhận một cặp file có dạng .xml và .pdf");
             }
+
+            string pdfFileName  = System.IO.Path.GetFileNameWithoutExtension(files[1].FileName);
+
+            string[] strArr = pdfFileName.Split('_');
+            if (strArr.Length != 3)
+                throw new FormatException("Tên file không hợp lệ theo cấu trúc: {location}_{press}_{postdate}.pdf");
+
+            string location = strArr[0].ToLower();
+            var validLocations = new string[] { "hcm", "hn" };
+            if(!validLocations.Contains( location.ToLower()))
+                throw new FormatException("Báo chỉ đăng tại HCM hoặc HN");
+
+            int press = int.Parse(strArr[1]);
+            DateTime postDate;
+            if(!DateTime.TryParseExact(strArr[2], "ddMMyyyy", null, DateTimeStyles.None, out postDate))
+                throw new FormatException("Định dạng ngày trên file pdf không hợp lệ");
 
             long size = files.Sum(f => f.Length);
 
@@ -81,15 +102,16 @@ namespace ClassifiedPrint.Uploader.Controllers
                 }
             }
 
-            return RedirectToAction("ParsePdf", new { xmlFileName = files[0].FileName, pdfFileName = files[1].FileName });
+            return RedirectToAction("ParsePdf", new { xmlFileName = files[0].FileName, pdfFileName = files[1].FileName, location, press, postDate });
         }
 
-        public async Task<IActionResult> ParsePdf(string xmlFileName, string pdfFileName)
+        public async Task<IActionResult> ParsePdf(string xmlFileName, string pdfFileName, string location, int press, DateTime postDate)
         {
-            Stopwatch stopwatch = new Stopwatch();
+            var areaId = location == "hcm" ? 2 : 1;
+            //Stopwatch stopwatch = new Stopwatch();
 
             // Begin timing.
-            stopwatch.Start();
+            //stopwatch.Start();
 
             var uploads = System.IO.Path.Combine(hostingEnvironment.WebRootPath, "uploads");
             var xmlFilePath = System.IO.Path.Combine(uploads, xmlFileName);
@@ -98,10 +120,20 @@ namespace ClassifiedPrint.Uploader.Controllers
             {
                 throw new InvalidDataException("Thông tin cần phân tích không hợp lệ");
             }
-
-            XmlSerializer xs = new XmlSerializer(typeof(MBP));
-            MBP listPrints = (MBP)xs.Deserialize(new FileStream(xmlFilePath, FileMode.Open));
-            
+            //var adfsa = new FileStream(xmlFilePath, FileMode.Open)
+            //XmlSerializer xs = new XmlSerializer(typeof(MBP));
+            MBP listPrints;// = (MBP)xs.Deserialize(new FileStream(xmlFilePath, FileMode.Open));
+            XmlSerializer serializer = new XmlSerializer(typeof(MBP));
+            using (StreamReader streamReader = new StreamReader(xmlFilePath, Encoding.UTF8, false))
+            {
+                string strXml = streamReader.ReadToEnd();
+                strXml = Regex.Replace(strXml, @"&#x([0-8BCEF]|1[0-9A-F]);", "");
+                using (var stringreader = new StringReader(strXml))
+                {
+                    listPrints = (MBP)serializer.Deserialize(stringreader);
+                }
+                //listPrints = (MBP)serializer.Deserialize(streamReader);
+            }
             foreach (var print in listPrints.Items)
             {
                 var bk2 = new MBN.Utils.Fonts(MBN.Utils.Fonts.ConvertType.UNICODE, MBN.Utils.Fonts.ConvertType.BK2);
@@ -111,10 +143,10 @@ namespace ClassifiedPrint.Uploader.Controllers
             await ParserPdf(pdfFilePath);
             
             int maxDegreeOfParallelism = configuration["MaxDegreeOfParallelism"] != null ? int.Parse(configuration["MaxDegreeOfParallelism"]) : 2;
-            await ParseContent(listPrints, maxDegreeOfParallelism);
+            await ParseContent(listPrints, maxDegreeOfParallelism, areaId, press, postDate);
                         
             var printIds = parsed.Keys.ToList();
-            var unparsed = listPrints.Items.Where(p => !printIds.Contains(p.Id)).ToList();
+            var unparsed = listPrints.Items.Where(p => !printIds.Contains(p.ContractNo)).ToList();
             if (unparsed.Count > 0)
             {
                 Parallel.ForEach(dPages.Keys, new ParallelOptions() { MaxDegreeOfParallelism = maxDegreeOfParallelism }, (page) => {                    
@@ -129,8 +161,9 @@ namespace ClassifiedPrint.Uploader.Controllers
                             int idx = rs.IndexOf(print.Phone, StringComparison.OrdinalIgnoreCase);
                             if (idx != -1)
                             {
-                                if (!parsed.ContainsKey(print.Id))
-                                    parsed[print.Id] = new Newspaper()
+                                if (!parsed.ContainsKey(print.ContractNo))
+                                {
+                                    parsed[print.ContractNo] = new Newspaper()
                                     {
                                         ClassifiedId = print.Id,
                                         ContractNo = print.ContractNo,
@@ -140,9 +173,14 @@ namespace ClassifiedPrint.Uploader.Controllers
                                         EndDate = print.EDate,
                                         Col = col,
                                         Page = page,
-                                        Created = print.Created
+                                        Created = print.Created,
+                                        AreaId = areaId,
+                                        PressNo = press,
+                                        PostDate = postDate,
+
                                     };
-                                break;
+                                    break;
+                                }
                             }
                             else
                             {
@@ -151,9 +189,9 @@ namespace ClassifiedPrint.Uploader.Controllers
                                 {
                                     var mobile = m.Value;
                                     idx = rs.IndexOf(mobile);
-                                    if (idx != -1 && !parsed.ContainsKey(print.Id))
+                                    if (idx != -1 && !parsed.ContainsKey(print.ContractNo))
                                     {
-                                        parsed[print.Id] = new Newspaper()
+                                        parsed[print.ContractNo] = new Newspaper()
                                         {
                                             ClassifiedId = print.Id,
                                             ContractNo = print.ContractNo,
@@ -163,7 +201,10 @@ namespace ClassifiedPrint.Uploader.Controllers
                                             EndDate = print.EDate,
                                             Col = col,
                                             Page = page,
-                                            Created = print.Created
+                                            Created = print.Created,
+                                            AreaId = areaId,
+                                            PressNo = press,
+                                            PostDate = postDate,
                                         };
 
                                         break;
@@ -176,22 +217,38 @@ namespace ClassifiedPrint.Uploader.Controllers
             }
             //stopwatch.Stop();
             //Debug.WriteLine(stopwatch.Elapsed);
-            printIds = parsed.Keys.ToList();
-            unparsed = listPrints.Items.Where(p => !printIds.Contains(p.Id)).ToList();
+
 
             //stopwatch.Reset();
             //stopwatch.Start();
-           
-            await InsertIntoDb();
-            //Debug.WriteLine($"Finished using dapper. Elapsed: {stopwatch.Elapsed} ");
+            unparsed = listPrints.Items.Where(p => !parsed.Keys.Contains(p.ContractNo)).ToList();
+            var newspapers = unparsed.Select(print => new Newspaper()
+            {
+                ClassifiedId = print.Id,
+                ContractNo = print.ContractNo,
+                Content = print.Content,
+                Phone = print.Phone,
+                BeginDate = print.BDate,
+                EndDate = print.EDate,
+                Col = 0,
+                Page = 0,
+                Created = print.Created,
+                AreaId = areaId,
+                PressNo = press,
+                PostDate = postDate,
+            }).ToList();
 
-            return View(new ParserContentResult() {Parsed = printIds.Count, TotalRecord = listPrints.Items.Count });
+            await InsertIntoDb(newspapers);
+            //Debug.WriteLine($"Finished using dapper. Elapsed: {stopwatch.Elapsed} ");
+            //printIds = parsed.Keys.ToList();
+            
+            return View(new ParserContentResult() { Parsed = printIds.Count, TotalRecord = listPrints.Items.Count, UnParseds = unparsed.Select(p => string.Format("{0} - {1}", p.Id, p.ContractNo)).ToList() });
         }
-        private async Task ParseContent(MBP listPrints, int maxDegreeOfParallelism)
+        private async Task ParseContent(MBP listPrints, int maxDegreeOfParallelism, int areaId, int press, DateTime postDate)
         {
             Parallel.ForEach(dPages.Keys, new ParallelOptions { MaxDegreeOfParallelism = maxDegreeOfParallelism }, (page) => {
                 var ids = parsed.Keys;
-                var prints = listPrints.Items.Where(p => !ids.Contains(p.Id)).ToList();
+                var prints = listPrints.Items.Where(p => !ids.Contains(p.ContractNo)).ToList();
                 foreach (var print in prints)
                 {
                     var currentPage = dPages[page];
@@ -202,7 +259,7 @@ namespace ClassifiedPrint.Uploader.Controllers
                         int idx = rs.IndexOf(print.ContentBK2, StringComparison.OrdinalIgnoreCase);
                         if (idx != -1)
                         {
-                            parsed[print.Id] = new Newspaper()
+                            parsed[print.ContractNo] = new Newspaper()
                             {
                                 ClassifiedId = print.Id,
                                 ContractNo = print.ContractNo,
@@ -212,7 +269,10 @@ namespace ClassifiedPrint.Uploader.Controllers
                                 EndDate = print.EDate,
                                 Col = col,
                                 Page = page,
-                                Created = print.Created
+                                Created = print.Created,
+                                AreaId = areaId,
+                                PressNo = press,
+                                PostDate = postDate,
                             };
                             break;
                         }
@@ -222,7 +282,7 @@ namespace ClassifiedPrint.Uploader.Controllers
                             idx = rs.IndexOf(contractNo, StringComparison.OrdinalIgnoreCase);
                             if (idx != -1)
                             {
-                                parsed[print.Id] = new Newspaper()
+                                parsed[print.ContractNo] = new Newspaper()
                                 {
                                     ClassifiedId = print.Id,
                                     ContractNo = print.ContractNo,
@@ -232,7 +292,10 @@ namespace ClassifiedPrint.Uploader.Controllers
                                     EndDate = print.EDate,
                                     Col = col,
                                     Page = page,
-                                    Created = print.Created
+                                    Created = print.Created,
+                                    AreaId = areaId,
+                                    PressNo = press,
+                                    PostDate = postDate,
                                 };
                                 break;
                             }
@@ -273,27 +336,49 @@ namespace ClassifiedPrint.Uploader.Controllers
                 }
             }
         }
-        private async Task InsertIntoDb()
+        private async Task InsertIntoDb(List<Newspaper> unparsed)
         {
             var sbSql = new StringBuilder();
             var parameters = new Dictionary<string, object>();
             int p = 1;
             foreach (var print in parsed.Values)
             {
-                sbSql.Append($"INSERT INTO newspaper (\"ClassifiedId\",\"ContractNo\",\"BeginDate\",\"EndDate\",\"Content\",\"Phone\",\"Created\",\"Col\",\"Page\") VALUES(@p{p}1,@p{p}2,@p{p}3,@p{p}4,@p{p}5,@p{p}6,@p{p}7,@p{p}8,@p{p}9) " +
-                    $"ON CONFLICT (\"ClassifiedId\") DO UPDATE SET \"ContractNo\"=@p{p}2,\"BeginDate\"=@p{p}3,\"EndDate\"=@p{p}4,\"Content\"=@p{p}5,\"Phone\"=@p{p}6,\"Created\"=@p{p}7,\"Col\"=@p{p}8,\"Page\"=@p{p}9 ; ");
+                sbSql.Append($"INSERT INTO newspaper (classified_id,contract_no,area_id,press_no,post_date,begin_date,end_date,content,phone,created,col,page) VALUES(@p{p}1,@p{p}2,@p{p}3,@p{p}4,@p{p}5,@p{p}6,@p{p}7,@p{p}8,@p{p}9,@p{p}_10,@p{p}_11,@p{p}_12) " +
+                    $"ON CONFLICT ON CONSTRAINT u_constraint_print DO UPDATE SET area_id=@p{p}3,press_no=@p{p}4,post_date=@p{p}5,begin_date=@p{p}6,end_date=@p{p}7,content=@p{p}8,phone=@p{p}9,created=@p{p}_10,col=@p{p}_11,page=@p{p}_12 ; ");
                 parameters.Add($"@p{p}1", print.ClassifiedId);
                 parameters.Add($"@p{p}2", print.ContractNo);
-                parameters.Add($"@p{p}3", print.BeginDate);
-                parameters.Add($"@p{p}4", print.EndDate);
-                parameters.Add($"@p{p}5", print.Content);
-                parameters.Add($"@p{p}6", print.Phone);
-                parameters.Add($"@p{p}7", print.Created);
-                parameters.Add($"@p{p}8", print.Col);
-                parameters.Add($"@p{p}9", print.Page);
+                parameters.Add($"@p{p}3", print.AreaId);
+                parameters.Add($"@p{p}4", print.PressNo);
+                parameters.Add($"@p{p}5", print.PostDate);
+                parameters.Add($"@p{p}6", print.BeginDate);
+                parameters.Add($"@p{p}7", print.EndDate);
+                parameters.Add($"@p{p}8", print.Content);
+                parameters.Add($"@p{p}9", print.Phone);
+                parameters.Add($"@p{p}_10", print.Created);
+                parameters.Add($"@p{p}_11", print.Col);
+                parameters.Add($"@p{p}_12", print.Page);
                 p++;
             }
 
+            foreach (var print in unparsed)
+            {
+                sbSql.Append($"INSERT INTO newspaper (classified_id,contract_no,area_id,press_no,post_date,begin_date,end_date,content,phone,created,col,page) VALUES(@p{p}1,@p{p}2,@p{p}3,@p{p}4,@p{p}5,@p{p}6,@p{p}7,@p{p}8,@p{p}9,@p{p}_10,@p{p}_11,@p{p}_12) " +
+                    $"ON CONFLICT ON CONSTRAINT u_constraint_print DO UPDATE SET area_id=@p{p}3,press_no=@p{p}4,post_date=@p{p}5,begin_date=@p{p}6,end_date=@p{p}7,content=@p{p}8,phone=@p{p}9,created=@p{p}_10,col=@p{p}_11,page=@p{p}_12 ; ");
+                parameters.Add($"@p{p}1", print.ClassifiedId);
+                parameters.Add($"@p{p}2", print.ContractNo);
+                parameters.Add($"@p{p}3", print.AreaId);
+                parameters.Add($"@p{p}4", print.PressNo);
+                parameters.Add($"@p{p}5", print.PostDate);
+                parameters.Add($"@p{p}6", print.BeginDate);
+                parameters.Add($"@p{p}7", print.EndDate);
+                parameters.Add($"@p{p}8", print.Content);
+                parameters.Add($"@p{p}9", print.Phone);
+                parameters.Add($"@p{p}_10", print.Created);
+                parameters.Add($"@p{p}_11", print.Col);
+                parameters.Add($"@p{p}_12", print.Page);
+                p++;
+            }
+            
             var command = new Command(sbSql.ToString(), parameters);
             await  service.ExecuteBulkOperationAsync(command);
         }
