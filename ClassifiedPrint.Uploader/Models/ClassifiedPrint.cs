@@ -45,6 +45,8 @@ namespace ClassifiedPrint.Uploader.Models
     {
         public int TotalRecord { get; set; }
         public int Parsed { get; set; }
+
+        public List<string> UnParseds { get; set; }
     }
 
 }
