@@ -27,19 +27,44 @@
     function validFiles(event, ex) {
         var ext = event.target ? event.target.value.split('.').pop().toLowerCase() : event.value.split('.').pop().toLowerCase();
         var btn = document.getElementById("Button");
-        if (ext === ex) {
-            btn.disabled = false;
-            return true;
+        if (ext !== ex) {
+
+            btn.disabled = true;
+            if (ex === 'xml')
+                alert('File chứa thông tin danh sách báo giấy(VVQ) không hợp lệ');
+            else
+                alert('File pdf ra báo không hợp lệ');
+
+            event.target.value = '';
+            return false;
         }
 
-        btn.disabled = true;
-        if (ex === 'xml')
-            alert('File chứa thông tin danh sách báo giấy(VVQ) không hợp lệ');
-        else
-            alert('File pdf ra báo không hợp lệ');
+        if (ext === 'pdf')
+        {
+            var fileName = event.target ? event.target.value.split('\\').pop().toLowerCase() : event.value.split('\\').pop().toLowerCase()
+            fileName = fileName.split('.').shift();
+            var strArr = fileName.split('_') || [];
+            if (strArr.length !== 3)
+            {
+                alert('File pdf ra báo phải có tên file theo cấu trúc: noidang_sobao_ngaydang; vd: HCM_1234_01012019');
+                return false;
+            }
+            try {
+                var location = strArr[0];
+                var pressNo = parseInt(strArr[1], 10) || 0;
+                var postDate = new Date(strArr[2].replace(/(\d{2})(\d{2})(\d{4})/, "$3-$2-$1"));
+                if ((location !== 'hcm' && location !== 'hn') || pressNo === 0 || !postDate) {
+                    alert('File pdf ra báo phải có tên file theo cấu trúc: noidang_sobao_ngaydang; vd: HCM_1234_01012019');
+                    return false;
+                }
+            } catch (error) {
+                alert('File pdf ra báo phải có tên file theo cấu trúc: noidang_sobao_ngaydang; vd: HCM_1234_01012019');
+                return false;
+            }   
+        } 
 
-        event.target.value = '';
-        return false;
+        btn.disabled = false;
+        return true;
     }
     function onSubmit(event) {
         var xmlFile = document.getElementById('xmlFileInput');

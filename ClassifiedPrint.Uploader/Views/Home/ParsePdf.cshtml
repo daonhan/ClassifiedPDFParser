@@ -1,3 +1,18 @@
 ﻿@model ParserContentResult
-<h2 class="text-success">Bóc tách tin đăng báo giấy thành công! @Model.Parsed/@Model.TotalRecord</h2>
+<h2 class="text-success">Bóc tách tin đăng báo giấy thành công: @Model.Parsed/@Model.TotalRecord</h2>
+@if (Model.UnParseds.Count > 0)
+{
+<div class="container">
+    <div class="row">
+        <h4>Danh sách các tin báo giấy không tìm thấy:</h4>
+        <ul>
+            @foreach (var id in Model.UnParseds)
+            {
+                <li>@id</li>
+            }
+        </ul>
+    </div>
+</div>
+}
+
 
