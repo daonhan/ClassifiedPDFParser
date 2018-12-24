@@ -21,7 +21,15 @@
             </div>
         </div>
     </form>
-    <div class='bouncing-loader' style="display:none"><div></div><div></div><div></div></div>
+    <div id="processingLoader" style="display:none">
+        <div class='bouncing-loader'><div></div><div></div><div></div></div>
+        <div class="alert alert-warning">
+            <p>
+                Vui lòng không tắt trình duyệt cho đến khi chạy xong chương trình
+            </p>
+        </div>
+    </div>
+    
 </div>
 <script>    
     function validFiles(event, ex) {
@@ -76,7 +84,7 @@
         
         event.target.innerHTML = "Đang xử lý";
         //event.target.setAttribute("disabled", "disabled");
-        var loading = document.getElementsByClassName('bouncing-loader')[0];
+        var loading = document.getElementById('processingLoader');
         if (loading) {
             loading.setAttribute('style', '');
             var form = document.getElementById('form');
