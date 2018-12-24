@@ -222,6 +222,47 @@ namespace ClassifiedPrint.Uploader.Controllers
             //stopwatch.Reset();
             //stopwatch.Start();
             unparsed = listPrints.Items.Where(p => !parsed.Keys.Contains(p.ContractNo)).ToList();
+            if (unparsed.Count > 0)
+            {
+                Parallel.ForEach(dPages.Keys, new ParallelOptions() { MaxDegreeOfParallelism = maxDegreeOfParallelism }, (page) => {
+
+                    foreach (var print in unparsed)
+                    {
+                        var currentPage = dPages[page];
+                        foreach (int col in currentPage.Keys)
+                        {
+                            string rs = rx.Replace(currentPage[col].ToString(), "");
+                            string subContent = print.ContentBK2.Length > 20 ? print.ContentBK2.Substring(0, print.ContentBK2.Length - 20) : print.ContentBK2.Substring(0, print.ContentBK2.Length - 11);
+                            int idx = rs.IndexOf(subContent, StringComparison.OrdinalIgnoreCase);
+                            if (idx != -1)
+                            {
+                                if (!parsed.ContainsKey(print.ContractNo))
+                                {
+                                    parsed[print.ContractNo] = new Newspaper()
+                                    {
+                                        ClassifiedId = print.Id,
+                                        ContractNo = print.ContractNo,
+                                        Content = print.Content,
+                                        Phone = print.Phone,
+                                        BeginDate = print.BDate,
+                                        EndDate = print.EDate,
+                                        Col = col,
+                                        Page = page,
+                                        Created = print.Created,
+                                        AreaId = areaId,
+                                        PressNo = press,
+                                        PostDate = postDate,
+
+                                    };
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            unparsed = listPrints.Items.Where(p => !parsed.Keys.Contains(p.ContractNo)).ToList();
+            printIds = parsed.Keys.ToList();
             var newspapers = unparsed.Select(print => new Newspaper()
             {
                 ClassifiedId = print.Id,
@@ -242,7 +283,7 @@ namespace ClassifiedPrint.Uploader.Controllers
             //Debug.WriteLine($"Finished using dapper. Elapsed: {stopwatch.Elapsed} ");
             //printIds = parsed.Keys.ToList();
             
-            return View(new ParserContentResult() { Parsed = printIds.Count, TotalRecord = listPrints.Items.Count, UnParseds = unparsed.Select(p => string.Format("{0} - {1}", p.Id, p.ContractNo)).ToList() });
+            return View(new ParserContentResult() { Parsed = printIds.Count, TotalRecord = listPrints.Items.Count, UnParseds = unparsed.Select(p => string.Format("{0} - {1}",p.ContractNo, p.Content)).ToList() });
         }
         private async Task ParseContent(MBP listPrints, int maxDegreeOfParallelism, int areaId, int press, DateTime postDate)
         {
